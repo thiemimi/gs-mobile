@@ -11,11 +11,18 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#414A22', 
+        tabBarInactiveTintColor: '#F1FEE7', 
+        tabBarStyle: {
+          backgroundColor: '#A5B574',
+          borderTopLeftRadius: 15, 
+          borderTopRightRadius: 15, 
+        },
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -24,11 +31,29 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="missoes"
         options={{
-          title: 'Explore',
+          title: 'Missões',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'checkbox' : 'checkbox-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notificacoes"
+        options={{
+          title: 'Notificações',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'notifications' : 'notifications-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Perfil',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
           ),
         }}
       />
