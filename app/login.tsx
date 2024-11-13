@@ -1,22 +1,11 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { useRouter } from 'expo-router'; 
+import { Redirect } from 'expo-router'; 
 
 
 const LoginScreen = () => {
-  const router = useRouter();
-
-  const handleLogin = () => {
+  return <Redirect href={"/(tabs)/home"}/>
   
-    router.push('/(tabs)'); 
-  };
-
-  return (
-    <View>
-      <Text>Login</Text>
-      <Button title="Entrar" onPress={handleLogin} />
-    </View>
-  );
 };
 
 export default LoginScreen;
