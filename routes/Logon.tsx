@@ -5,7 +5,7 @@ import { auth } from '@/components/FIrebase';
 import { router, useRouter } from 'expo-router';
 import { User } from '@/models/User.interface';
 
-export default function Logon({navigation}) {
+export default function Logon({navigation}: any) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');  
@@ -13,7 +13,7 @@ export default function Logon({navigation}) {
  
   useEffect(() => {
     if(user?.uid){
-      navigation.navigate('Landing')
+      navigation.navigate('Tabs')
     }
   })
 
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
   },
 
   titleText: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: 60,
   },
   whiteContainer: {
     width: '100%',
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     width: '70%',
-    marginTop: 55,
+    marginTop: 105,
   },
   label: {
     fontSize: 16,

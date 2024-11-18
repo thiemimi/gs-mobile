@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 import { User } from '@/models/User.interface';
 
 
-export default function Login({navigation}) {
+export default function Login({navigation}: any) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,9 +13,9 @@ export default function Login({navigation}) {
 
   useEffect(() => {
     if(user?.uid){
-      navigation.navigate('Landing')
+        navigation.navigate('Tabs');
     }
-  })
+  }); 
 
   async function login() {
     auth
@@ -23,6 +23,8 @@ export default function Login({navigation}) {
       .then((response) => {
         setUser(response.user)
         console.log(response.user)
+        
+        
       })
       .catch((error) => {
         console.log(error)

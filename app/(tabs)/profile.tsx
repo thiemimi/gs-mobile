@@ -1,4 +1,6 @@
+import { auth } from '@/components/FIrebase';
 import { Image, StyleSheet, TouchableOpacity, Text, View, ImageSourcePropType } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 interface MenuButtonProps {
   icon: ImageSourcePropType; 
@@ -18,7 +20,8 @@ const MenuButton: React.FC<MenuButtonProps> = ({ icon, text, onPress }) => {
   );
 };
 
-export default function HomeScreen() {
+export default function Profile({navigation}: any) {
+
   return (
     <View style={styles.container}>
       <Image
@@ -71,7 +74,10 @@ export default function HomeScreen() {
         <MenuButton
           icon={require('@/assets/icons/icon-logout.png')}
           text="Sair"
-          onPress={() => console.log('Sair')}
+          onPress={() => {
+            auth.signOut();
+            navigation.navigate('Login')
+          }}
         />
       </View>
     </View>

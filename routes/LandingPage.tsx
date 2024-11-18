@@ -1,7 +1,7 @@
 import { auth } from "@/components/FIrebase";
 import { Button, View, Text } from "react-native";
 
-export default function LandingPage({navigation}){
+export default function LandingPage({navigation}: any){
 
     return(
         <View>

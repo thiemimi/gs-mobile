@@ -1,15 +1,21 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Profile from './profile';
+import Notificacoes from './notificacoes';
+import Missoes from './missoes';
+import Home from './home';
+
+const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
+    <Tab.Navigator
+      initialRouteName='home'
       screenOptions={{
         tabBarActiveTintColor: '#414A22', 
         tabBarInactiveTintColor: '#F1FEE7', 
@@ -21,8 +27,9 @@ export default function TabLayout() {
         headerShown: false,
       }}
     >
-      <Tabs.Screen
+      <Tab.Screen
         name="home"
+        component={Home}
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -30,8 +37,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      <Tab.Screen
         name="missoes"
+        component={Missoes}
         options={{
           title: 'Missões',
           tabBarIcon: ({ color, focused }) => (
@@ -39,8 +47,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      <Tab.Screen
         name="notificacoes"
+        component={Notificacoes}
         options={{
           title: 'Notificações',
           tabBarIcon: ({ color, focused }) => (
@@ -48,8 +57,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      <Tab.Screen
         name="profile"
+        component={Profile}
         options={{
           title: 'Perfil',
           tabBarIcon: ({ color, focused }) => (
@@ -57,6 +67,6 @@ export default function TabLayout() {
           ),
         }}
       />
-    </Tabs>
+    </Tab.Navigator>
   );
 }
