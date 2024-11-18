@@ -7,7 +7,6 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-  
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +16,12 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.watteco.firebaseauth"
     },
     "web": {
       "bundler": "metro",
       "output": "static"
-
     },
     "plugins": [
       "expo-router"

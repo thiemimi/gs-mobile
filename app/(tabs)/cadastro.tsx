@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { auth } from '@/components/FIrebase';
 
 
 export default function Cadastro() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');  
@@ -13,6 +14,12 @@ export default function Cadastro() {
   const handleCadastrar = () => {
     //navigation.navigate('index'); 
   };
+
+  auth
+    .createUserWithEmailAndPassword('email@email.com', '12345')
+    .then((response) => {
+      console.log
+    })
 
   return (
     <View style={styles.backgroundContainer}>
