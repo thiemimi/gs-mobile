@@ -1,26 +1,34 @@
-
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { auth } from '@/components/FIrebase';
+import { router } from 'expo-router';
+import { User } from '@/models/User.interface';
 
 
-export default function Cadastro() {
-  
+export default function Login({navigation}) {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');  
-  const [phone, setPhone] = useState('');     
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    if(user?.uid){
+      navigation.navigate('Landing')
+    }
+  })
+
+  async function login() {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        setUser(response.user)
+        console.log(response.user)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
  
-  const handleCadastrar = () => {
-    //navigation.navigate('index'); 
-  };
-
-  auth
-    .createUserWithEmailAndPassword('email@email.com', '12345')
-    .then((response) => {
-      console.log
-    })
-
   return (
     <View style={styles.backgroundContainer}>
       <Image
@@ -28,17 +36,13 @@ export default function Cadastro() {
         style={styles.backgroundImage}
       />
 
+      <Image
+        source={require("@/assets/images/logoWattEco.png")}
+        style={styles.logo}
+      />
       <View style={styles.whiteContainer}>
-        <Text style={styles.titleText}>Cadastro</Text>
+        <Text style={styles.titleText}>Login</Text>
         <View style={styles.containerForm}>
-          <Text style={styles.label}>Nome de Usuário</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu nome de usuário"
-            value={username}
-            onChangeText={setUsername}
-          />
-
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
@@ -49,30 +53,25 @@ export default function Cadastro() {
             autoCapitalize="none"
           />
 
-          <Text style={styles.label}>Telefone</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu telefone"
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType="phone-pad"
-          />
-
           <Text style={styles.label}>Senha</Text>
           <TextInput
             style={styles.input}
             placeholder="Digite sua senha"
             value={password}
             onChangeText={setPassword}
-            secureTextEntry 
+            secureTextEntry // oculta a senha
           />
-          
-          <TouchableOpacity style={styles.cadastrarButton} onPress={handleCadastrar}>
-            <Text style={styles.cadastrarButtonText}>Cadastrar</Text>
+          <View style={styles.passwordContainer}>
+            <Text style={styles.passwordText}>Esqueceu a senha?</Text>
+          </View>
+
+         
+          <TouchableOpacity style={styles.loginButton} onPress={() => login()}>
+            <Text style={styles.loginButtonText}>Entrar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleCadastrar}>
-            <Text style={styles.loginButton}>Já possui uma conta? Faça login!</Text>
+          <TouchableOpacity onPress={()=> navigation.navigate('Logon')}>
+            <Text style={styles.cadastrarButton}>Não possui uma conta? Crie agora!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -92,15 +91,21 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
   },
-
+  logo: {
+    width: 115,
+    height: 115,
+    resizeMode: 'contain',
+    marginTop: 30,
+    zIndex: 2,
+  },
   titleText: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: 50,
   },
   whiteContainer: {
     width: '100%',
-    height: '90%',
+    height: '80%',
     position: 'absolute',
     bottom: 0,
     alignItems: 'center',
@@ -110,7 +115,7 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     width: '70%',
-    marginTop: 55,
+    marginTop: 60,
   },
   label: {
     fontSize: 16,
@@ -133,22 +138,21 @@ const styles = StyleSheet.create({
     color: '#414A22',
     textDecorationLine: 'underline',
   },
-  cadastrarButton: {
+  loginButton: {
     backgroundColor: '#A5B574',
     padding: 10,
     width: '50%',
-    marginTop: 20,
     borderRadius: 20,
     alignSelf: 'center',
     alignItems: 'center'
   },
-  cadastrarButtonText: {
+  loginButtonText: {
     color: '#F1FEE7',
     fontSize: 18,
     fontWeight: 'bold',
   },
 
-  loginButton: {
+  cadastrarButton: {
     color: '#414A22',
     fontSize: 16,
     textDecorationLine: 'underline',
