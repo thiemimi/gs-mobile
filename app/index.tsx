@@ -5,6 +5,9 @@ import React from 'react';
 import Logon from '@/routes/Logon';
 import TabLayout from '@/app/(tabs)/_layout';
 import { NavigationContainer } from '@react-navigation/native';
+import EditarMissao from '@/routes/Missoes/EditMissao';
+import AdicionarMissao from '@/routes/Missoes/AddMissao';
+import Missoes from './(tabs)/missoes';
 
 export default function Index() {
 
@@ -25,6 +28,14 @@ export default function Index() {
         <Stack.Screen
             name='Tabs'
             component={TabLayout}
+        />
+        <Stack.Screen 
+            name="AdicionarMissao"  
+            component={AdicionarMissao} 
+        />
+        <Stack.Screen 
+            name="EditarMissao" 
+            component={EditarMissao} 
         />
         </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,6 @@
 import  firebase from "@react-native-firebase/app";
 import '@react-native-firebase/auth';
+import '@react-native-firebase/firestore'; 
 
 const firebaseConfig = {
     clientId: 'gs-mobile-watteco',
@@ -18,4 +19,6 @@ const apps = firebase.apps
 apps.forEach(app => console.log(app.name))
 
 const auth = firebase.app().auth()
-export {firebase, auth}
+const firestore = firebase.firestore();
+
+export {firebase, auth, firestore}

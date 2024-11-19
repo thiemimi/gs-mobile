@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { auth } from '@/components/FIrebase';
-import { router } from 'expo-router';
 import { User } from '@/models/User.interface';
 
 
@@ -61,7 +60,7 @@ export default function Login({navigation}: any) {
             placeholder="Digite sua senha"
             value={password}
             onChangeText={setPassword}
-            secureTextEntry // oculta a senha
+            secureTextEntry 
           />
           <View style={styles.passwordContainer}>
             <Text style={styles.passwordText}>Esqueceu a senha?</Text>
