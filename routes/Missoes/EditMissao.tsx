@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert, Image } from 'react-native';
 import { firestore } from '@/components/FIrebase';
 
 export default function EditarMissao({ route, navigation }: any) {
@@ -44,27 +44,30 @@ export default function EditarMissao({ route, navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <Image
+            source={require("@/assets/images/background_login.png")}
+            style={styles.backgroundContainer}
+        />
       <Text style={styles.title}>Editar Missão</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Título"
-        value={titulo}
-        onChangeText={setTitulo}
+      <View style={styles.inputs}>
+        <TextInput
+          style={styles.input}
+          placeholder="Título"
+          value={titulo}
+          onChangeText={setTitulo}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Descrição"
+          value={descricao}
+          onChangeText={setDescricao}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Descrição"
-        value={descricao}
-        onChangeText={setDescricao}
-      />
+      </View>
+      
 
       <TouchableOpacity onPress={editarMissao} style={styles.button}>
         <Text style={styles.buttonText}>Salvar Alterações</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=> navigation.navigate('Tabs')} style={styles.buttonBack}>
-            <Text style={styles.buttonText}> Voltar </Text>
-        </TouchableOpacity>
     </View>
   );
 }
@@ -74,14 +77,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C5E8AC',
-    padding: 20,
+    position: 'relative'
+  },
+  backgroundContainer: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    resizeMode: 'stretch',
+
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 40,
     marginTop: 50,
+  },
+  inputs:{
+    width: '80%',
+    padding: 10,
   },
   input: {
     width: '100%',

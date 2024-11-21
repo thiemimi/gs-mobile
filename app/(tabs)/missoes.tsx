@@ -39,7 +39,7 @@ export default function Missoes({ navigation }: any) {
   );
 
   const editarMissao = (id: string) => {
-    navigation.navigate('EditarMissao', { id });
+    navigation.navigate('MoreMissoes', { screen: 'EditMissao', params: { id } });
   };
 
   const excluirMissao = async (id: string) => {
@@ -52,7 +52,7 @@ export default function Missoes({ navigation }: any) {
   };
 
   const adicionarMissao = () => {
-    navigation.navigate('AdicionarMissao');
+    navigation.navigate('MoreMissoes', {screen: 'AdicionarMissao'});
   };
 
   return (
@@ -93,15 +93,14 @@ const styles = StyleSheet.create({
     height: '85%',
     position: 'absolute',
     bottom: 0,
-    backgroundColor: '#F1FEE7',
+    backgroundColor: '#E3F9D2',
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
   listaMissoes: {
     width: '80%',
-    padding: 10,
-    margin: 15,
-    marginTop: 50
+    padding: 1,
+    marginTop: 80
   },
 
   floatingButton: {
@@ -127,13 +126,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FFF2',
     padding: 15,
     marginBottom: 15,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor:'#6F7D41',
+    borderRadius: 5,
     position: 'relative', 
   },
   missaoInfo:{
-    padding: 5,
+    padding: 8,
     flex: 1,
   },
   missaoTitulo: {

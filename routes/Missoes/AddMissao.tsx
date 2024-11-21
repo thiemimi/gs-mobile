@@ -18,7 +18,7 @@ export default function AdicionarMissao({ navigation }: any) {
         descricao,
         criadoEm: new Date(),
       });
-      navigation.navigate('Missoes');
+      navigation.navigate('Tabs', { screen: 'Missoes' });
     } catch (error) {
       console.error("Erro ao adicionar missão: ", error);
       Alert.alert('Erro ao adicionar missão');
@@ -28,7 +28,7 @@ export default function AdicionarMissao({ navigation }: any) {
   return (
     <View style={styles.container}>
         <Image
-            source={require("@/assets/images/background_missao.png")}
+            source={require("@/assets/images/background_login.png")}
             style={styles.backgroundContainer}
         />
        
@@ -49,9 +49,6 @@ export default function AdicionarMissao({ navigation }: any) {
     </View>
         <TouchableOpacity onPress={adicionarMissao} style={styles.button}>
             <Text style={styles.buttonText}>Adicionar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=> navigation.navigate('Tabs')} style={styles.buttonBack}>
-            <Text style={styles.buttonText}> Voltar </Text>
         </TouchableOpacity>
     </View>
   );

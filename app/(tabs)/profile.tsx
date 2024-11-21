@@ -34,20 +34,7 @@ export default function Profile({navigation}: any) {
           source={require("@/assets/icons/icon-photo.png")}
           style={styles.profileImage}
         />
-      </View>
-
-    
-      <View style={styles.profileStatsContainer}>
-        <View style={styles.profileStat}>
-          <Text style={styles.statText}>13</Text>
-        </View>
-        <View style={styles.profileStat}>
-          <Text style={styles.statText}>5</Text>
-        </View>
-        <View style={styles.profileStat}>
-          <Text style={styles.statText}>154</Text>
-        </View>
-      
+        <Text style={styles.userName}> username </Text>
       </View>
 
       <View style={styles.WhiteContainer}>
@@ -64,12 +51,12 @@ export default function Profile({navigation}: any) {
         <MenuButton
           icon={require('@/assets/icons/icon-feedback.png')}
           text="Feedback"
-          onPress={() => console.log('Feedback')}
+          onPress={() => navigation.navigate('MoreProfile', {screen: 'Feedback'})}
         />
         <MenuButton
           icon={require('@/assets/icons/icon-help.png')}
           text="Ajuda"
-          onPress={() => console.log('Ajuda')}
+          onPress={() => navigation.navigate('MoreProfile', {screen: 'Ajuda'})}
         />
         <MenuButton
           icon={require('@/assets/icons/icon-logout.png')}
@@ -112,31 +99,14 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
     borderRadius: 50, 
+    marginTop: 20,
+    marginBottom: 15,    
+  },
+  userName:{
+    fontSize: 18,
+    marginBottom: 35,
   },
 
-  profileStatsContainer: {
-    flexDirection: 'row',  
-    justifyContent: 'space-evenly',  
-    alignItems: 'center',  
-    width: '100%',  
-    padding: 10,
-    marginBottom: 10,
-  },
-  profileStat: {
-    width: 60,  
-    height: 60, 
-    backgroundColor: '#DFE9BF',  
-    justifyContent: 'center', 
-    alignItems: 'center',  
-    borderRadius: 100,  
-    borderColor: '#414A22',
-    borderWidth: 2,
-    padding: 10,
-  },
-  statText: {
-    fontSize: 18,  
-    color: '#414A22',
-  },
   WhiteContainer: {
     flexGrow: 1,  
     width: '100%',

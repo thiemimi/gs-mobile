@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 60,
+    marginTop: 70,
   },
   whiteContainer: {
     width: '100%',
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     width: '70%',
-    marginTop: 105,
+    marginTop: 90,
   },
   label: {
     fontSize: 16,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     color: '#414A22',
     fontSize: 16,
     textDecorationLine: 'underline',
-    marginTop: 15,
+    marginTop: 25,
     alignSelf: 'center',
     alignItems: 'center'
   },
