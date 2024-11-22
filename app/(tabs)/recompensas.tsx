@@ -63,9 +63,11 @@ export default function Recompensas() {
     <View style={styles.backgroundContainer}>
       <Text style={styles.titleText}>Recompensas</Text>
       <View style={styles.whiteContainer}>
+      <Text style={styles.pontosText}>Pontos acumulados: 250</Text>
         {isLoading ? (
           <Text style={styles.loadingText}>Carregando...</Text>
         ) : (
+            
           <SectionList
             sections={sections}
             keyExtractor={(item, index) => `${item.id}-${index}`} 
@@ -107,6 +109,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     marginTop: 25,
     padding: 30,
+  },
+  pontosText:{
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#424141',
+    textAlign: 'center',
+    marginBottom: 15,
+    marginTop: 10,
   },
   sectionTitle: {
     fontSize: 18,
