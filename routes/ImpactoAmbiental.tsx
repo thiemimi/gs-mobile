@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 
-export default function ImpactoAmbiental (){
+export default function ImpactoAmbiental() {
   
   const impacto = {
     aguaEconomizada: 1500,
@@ -10,74 +10,82 @@ export default function ImpactoAmbiental (){
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Impacto Ambiental 🌱</Text>
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('@/assets/images/background_login.png')}
+        style={styles.backgroundContainer}
+      >
+        <Text style={styles.header}>Impacto Ambiental 🌱</Text>
 
-      <View style={styles.card}>
-        <Text style={styles.statTitle}>Litros de Água Economizados</Text>
-        <Text style={styles.statValue}>{impacto.aguaEconomizada}L</Text>
-      </View>
+        <View style={styles.card}>
+          <Text style={styles.statTitle}>Litros de Água Economizados</Text>
+          <Text style={styles.statValue}>{impacto.aguaEconomizada}L</Text>
+        </View>
 
-      <View style={styles.card}>
-        <Text style={styles.statTitle}>Resíduos Evitados</Text>
-        <Text style={styles.statValue}>{impacto.residuosEvitados}kg</Text>
-      </View>
+        <View style={styles.card}>
+          <Text style={styles.statTitle}>Resíduos Evitados</Text>
+          <Text style={styles.statValue}>{impacto.residuosEvitados}kg</Text>
+        </View>
 
-      <View style={styles.card}>
-        <Text style={styles.statTitle}>Carbono Não Emitido</Text>
-        <Text style={styles.statValue}>{impacto.carbonoNaoEmitido}kg</Text>
-      </View>
+        <View style={styles.card}>
+          <Text style={styles.statTitle}>Carbono Não Emitido</Text>
+          <Text style={styles.statValue}>{impacto.carbonoNaoEmitido}kg</Text>
+        </View>
 
-      <Text style={styles.footer}>
-        Cada ação que você realiza no aplicativo contribui para um planeta mais sustentável. Obrigado por fazer a diferença! 🌍
-      </Text>
-    </ScrollView>
+        <Text style={styles.footer}>
+          Cada ação que você realiza no aplicativo contribui para um planeta mais sustentável. Obrigado por fazer a diferença! 🌍
+        </Text>
+      </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    alignItems: 'center',
+    flex: 1,
+  },
+  backgroundContainer: {
+    flex: 1,
+    resizeMode: 'cover',
+    paddingTop: 50,
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#F1FEE7',
+    alignItems: 'center',
+    paddingHorizontal: 20,
   },
   header: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
-    color: '#2f855a',
-    marginBottom: 20,
+    marginBottom: 30,
     textAlign: 'center',
+    color: '#4D5532',
   },
   card: {
-    backgroundColor: '#CCEE8D',
-    borderRadius: 8,
-    padding: 15,
-    marginVertical: 10,
+    backgroundColor: '#edf5de', 
+    borderRadius: 12,
+    padding: 20,
+    marginVertical: 12,
     width: '100%',
     shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
   },
   statTitle: {
     fontSize: 18,
-    color: '#4a5568',
-    marginBottom: 5,
+    color: '#4D5532', 
+    marginBottom: 8,
   },
   statValue: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#38a169',
+    color: '#4D5532', 
   },
   footer: {
-    marginTop: 20,
+    marginTop: 30,
     fontSize: 16,
-    color: '#718096',
+    color: '#4D5532', 
     textAlign: 'center',
+    marginBottom: 20,
   },
 });
-
-

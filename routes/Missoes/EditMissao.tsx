@@ -3,17 +3,20 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert, Image } fro
 import { firestore } from '@/components/FIrebase';
 
 export default function EditarMissao({ route, navigation }: any) {
-  const { id } = route.params; // Pegando o ID da missão da navegação
+  const { id } = route.params;
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [pontos, setPontos] = useState('');
 
   useEffect(() => {
     const fetchMissao = async () => {
       try {
         const doc = await firestore.collection('missoes').doc(id).get();
         if (doc.exists) {
-          setTitulo(doc.data()?.titulo);
-          setDescricao(doc.data()?.descricao);
+          const data = doc.data();
+          setTitulo(data?.titulo || '');
+          setDescricao(data?.descricao || '');
+          setPontos(data?.pontos?.toString() || ''); 
         }
       } catch (error) {
         console.error("Erro ao carregar missão: ", error);
@@ -24,8 +27,13 @@ export default function EditarMissao({ route, navigation }: any) {
   }, [id]);
 
   const editarMissao = async () => {
-    if (!titulo || !descricao) {
+    if (!titulo || !descricao || !pontos) {
       Alert.alert('Preencha todos os campos');
+      return;
+    }
+
+    if (isNaN(Number(pontos))) {
+      Alert.alert('Os pontos devem ser um número');
       return;
     }
 
@@ -33,9 +41,10 @@ export default function EditarMissao({ route, navigation }: any) {
       await firestore.collection('missoes').doc(id).update({
         titulo,
         descricao,
+        pontos: Number(pontos), 
         atualizadoEm: new Date(),
       });
-      navigation.goBack(); 
+      navigation.goBack();
     } catch (error) {
       console.error("Erro ao editar missão: ", error);
       Alert.alert('Erro ao editar missão');
@@ -45,9 +54,9 @@ export default function EditarMissao({ route, navigation }: any) {
   return (
     <View style={styles.container}>
       <Image
-            source={require("@/assets/images/background_login.png")}
-            style={styles.backgroundContainer}
-        />
+        source={require("@/assets/images/background_login.png")}
+        style={styles.backgroundContainer}
+      />
       <Text style={styles.title}>Editar Missão</Text>
       <View style={styles.inputs}>
         <TextInput
@@ -61,10 +70,15 @@ export default function EditarMissao({ route, navigation }: any) {
           placeholder="Descrição"
           value={descricao}
           onChangeText={setDescricao}
-      />
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Pontos"
+          value={pontos}
+          onChangeText={setPontos}
+          keyboardType="numeric"
+        />
       </View>
-      
-
       <TouchableOpacity onPress={editarMissao} style={styles.button}>
         <Text style={styles.buttonText}>Salvar Alterações</Text>
       </TouchableOpacity>
@@ -77,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative'
+    position: 'relative',
   },
   backgroundContainer: {
     width: '100%',
@@ -88,7 +102,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     resizeMode: 'stretch',
-
   },
   title: {
     fontSize: 28,
@@ -96,7 +109,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 50,
   },
-  inputs:{
+  inputs: {
     width: '80%',
     padding: 10,
   },

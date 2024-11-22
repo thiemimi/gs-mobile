@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   loginButton: {
-    backgroundColor: '#A5B574',
+    backgroundColor: '#6F7D41',
     padding: 10,
     width: '50%',
     borderRadius: 20,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     color: '#414A22',
     fontSize: 16,
     textDecorationLine: 'underline',
-    marginTop: 15,
+    marginTop: 25,
     alignSelf: 'center',
     alignItems: 'center'
   },

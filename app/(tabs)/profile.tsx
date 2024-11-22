@@ -1,6 +1,5 @@
 import { auth } from '@/components/FIrebase';
 import { Image, StyleSheet, TouchableOpacity, Text, View, ImageSourcePropType } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 interface MenuButtonProps {
   icon: ImageSourcePropType; 
@@ -41,7 +40,7 @@ export default function Profile({navigation}: any) {
         <MenuButton
           icon={require('@/assets/icons/icon-profile.png')}
           text="Editar Perfil"
-          onPress={() => console.log('Editar Perfil')}
+          onPress={() => navigation.navigate('MoreProfile', {screen: 'EditarPerfil'})}
         />
         <MenuButton
           icon={require('@/assets/icons/icon-config.png')}

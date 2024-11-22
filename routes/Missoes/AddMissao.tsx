@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert, Image, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert, Image } from 'react-native';
 import { firestore } from '@/components/FIrebase';
 
 export default function AdicionarMissao({ navigation }: any) {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [pontos, setPontos] = useState('');
 
   const adicionarMissao = async () => {
-    if (!titulo || !descricao) {
+    if (!titulo || !descricao || !pontos) {
       Alert.alert('Preencha todos os campos');
+      return;
+    }
+
+    if (isNaN(Number(pontos))) {
+      Alert.alert('Os pontos devem ser um número');
       return;
     }
 
@@ -16,6 +22,7 @@ export default function AdicionarMissao({ navigation }: any) {
       await firestore.collection('missoes').add({
         titulo,
         descricao,
+        pontos: Number(pontos), 
         criadoEm: new Date(),
       });
       navigation.navigate('Tabs', { screen: 'Missoes' });
@@ -27,29 +34,36 @@ export default function AdicionarMissao({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-        <Image
-            source={require("@/assets/images/background_login.png")}
-            style={styles.backgroundContainer}
-        />
-       
+      <Image
+        source={require("@/assets/images/background_login.png")}
+        style={styles.backgroundContainer}
+      />
+
       <Text style={styles.title}>Adicionar Missão</Text>
-    <View style={styles.Inputs}>
-      <TextInput
-        style={styles.input}
-        placeholder="Título"
-        value={titulo}
-        onChangeText={setTitulo}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Descrição"
-        value={descricao}
-        onChangeText={setDescricao}
-      />
-    </View>
-        <TouchableOpacity onPress={adicionarMissao} style={styles.button}>
-            <Text style={styles.buttonText}>Adicionar</Text>
-        </TouchableOpacity>
+      <View style={styles.Inputs}>
+        <TextInput
+          style={styles.input}
+          placeholder="Título"
+          value={titulo}
+          onChangeText={setTitulo}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Descrição"
+          value={descricao}
+          onChangeText={setDescricao}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Pontos"
+          value={pontos}
+          onChangeText={setPontos}
+          keyboardType="numeric" 
+        />
+      </View>
+      <TouchableOpacity onPress={adicionarMissao} style={styles.button}>
+        <Text style={styles.buttonText}>Adicionar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -59,9 +73,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative'
+    position: 'relative',
   },
-
   backgroundContainer: {
     width: '100%',
     height: '100%',
@@ -71,19 +84,16 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     resizeMode: 'stretch',
-
   },
-  
   title: {
     fontSize: 28,
     fontWeight: 'bold',
     marginTop: 40,
     marginBottom: 50,
   },
-  Inputs:{
+  Inputs: {
     width: '80%',
     padding: 10,
-   
   },
   input: {
     width: '100%',

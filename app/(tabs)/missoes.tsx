@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { firestore } from '@/components/FIrebase';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -26,6 +26,7 @@ export default function Missoes({ navigation }: any) {
       <View style={styles.missaoInfo}>
         <Text style={styles.missaoTitulo}>{item.titulo}</Text>
         <Text style={styles.missaoDescricao}>{item.descricao}</Text>
+        <Text style={styles.missaoPontos}>Pontos: {item.pontos}</Text>
       </View>
       <View style={styles.missaoBotoes}>
         <TouchableOpacity onPress={() => editarMissao(item.id)} style={styles.missaoBotao}>
@@ -122,12 +123,14 @@ const styles = StyleSheet.create({
   },
 
   missaoItem: {
-    flexDirection: 'row',
     backgroundColor: '#F8FFF2',
     padding: 15,
-    marginBottom: 15,
-    borderRadius: 5,
-    position: 'relative', 
+    marginBottom: 12,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
   },
   missaoInfo:{
     padding: 8,
@@ -142,6 +145,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#777',
     marginVertical: 5,
+  },
+  missaoPontos: {
+    fontSize: 14,
+    color: '#777',
+    marginVertical: 5,
+    fontWeight: '800'
   },
   missaoBotoes: {
     position: 'absolute', 

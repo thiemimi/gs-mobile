@@ -60,15 +60,15 @@ export default function Home({ navigation }: any) {
       <View style={styles.WhiteContainer}>
         <Text style={styles.infoTitle}>Painel de progresso</Text>
         <View style={styles.infoBox}>
-          <Text style={styles.infoNumber}>15</Text>
+          <Text style={styles.infoNumber}>3</Text>
           <Text style={styles.infoText}> missões completas</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoNumber}>10</Text>
+          <Text style={styles.infoNumber}>1</Text>
           <Text style={styles.infoText}>recompensas coletadas</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoNumber}>3</Text>
+          <Text style={styles.infoNumber}>2</Text>
           <Text style={styles.infoText}>Metas sustentáveis alcançadas</Text>
         </View>
       </View>

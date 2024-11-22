@@ -8,11 +8,12 @@ import EditarMissao from '@/routes/Missoes/EditMissao';
 import AdicionarMissao from '@/routes/Missoes/AddMissao';
 import Dicas from '@/routes/Dicas';
 import Leaderboard from '@/routes/Leaderboard';
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ajuda from '@/routes/Ajuda';
 import Feedback from '@/routes/Feedback';
 import ImpactoAmbiental from '@/routes/ImpactoAmbiental';
+import TelaInicial from '@/routes/TelaInicial';
+import EditProfile from '@/routes/EditarPerfil';
 
 export default function Index() {
 
@@ -55,17 +56,21 @@ export default function Index() {
           tabBarStyle: { display: 'none' }, 
         }}
         >
-            <Tab.Screen
+          <Tab.Screen
+            name="EditarPerfil" 
+            component={EditProfile}
+            options={{headerShown: false}}
+          />
+          <Tab.Screen
             name="Ajuda" 
             component={Ajuda}
-            options={{headerShown: false}}
-            
-            />
-            <Tab.Screen
+            options={{headerShown: false}} 
+          />
+          <Tab.Screen
             name="Feedback" 
             component={Feedback}
             options={{headerShown: false}}
-            />
+          /> 
         </Tab.Navigator>
     );
   }
@@ -99,6 +104,10 @@ export default function Index() {
       <Stack.Navigator
         screenOptions={{ headerShown: false }} 
       >
+        <Stack.Screen
+          name="TelaInicial"
+          component={TelaInicial}
+        />
         <Stack.Screen
           name="Login"
           component={Login}

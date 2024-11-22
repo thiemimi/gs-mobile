@@ -1,12 +1,11 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './profile';
-import Notificacoes from './notificacoes';
 import Missoes from './missoes';
 import Home from './home';
+import Recompensas from './recompensas';
 
 const Tab = createBottomTabNavigator();
 
@@ -48,12 +47,12 @@ export default function TabLayout() {
         }}
       />
       <Tab.Screen
-        name="notificacoes"
-        component={Notificacoes}
+        name="recompensas"
+        component={Recompensas}
         options={{
-          title: 'Notificações',
+          title: 'Recompensas',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'notifications' : 'notifications-outline'} color={color} />
+            <TabBarIcon name={focused ? 'trophy': 'trophy-outline'} color={color} />
           ),
         }}
       />

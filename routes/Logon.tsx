@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { auth } from '@/components/FIrebase';
-import { router, useRouter } from 'expo-router';
 import { User } from '@/models/User.interface';
 
 export default function Logon({navigation}: any) {
@@ -36,7 +35,10 @@ export default function Logon({navigation}: any) {
         source={require("@/assets/images/background_login.png")}
         style={styles.backgroundImage}
       />
-
+      <Image
+        source={require("@/assets/images/logoWattEco.png")}
+        style={styles.logo}
+      />
       <View style={styles.whiteContainer}>
         <Text style={styles.titleText}>Cadastro</Text>
         <View style={styles.containerForm}>
@@ -91,11 +93,18 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 70,
+    marginTop: 55,
+  },
+  logo: {
+    width: 125,
+    height: 125,
+    resizeMode: 'contain',
+    marginTop: 30,
+    zIndex: 2,
   },
   whiteContainer: {
     width: '100%',
-    height: '90%',
+    height: '80%',
     position: 'absolute',
     bottom: 0,
     alignItems: 'center',
@@ -105,7 +114,7 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     width: '70%',
-    marginTop: 90,
+    marginTop: 55,
   },
   label: {
     fontSize: 16,
@@ -129,10 +138,10 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   cadastrarButton: {
-    backgroundColor: '#A5B574',
+    backgroundColor: '#6F7D41',
     padding: 10,
     width: '50%',
-    marginTop: 20,
+    marginTop: 35,
     borderRadius: 20,
     alignSelf: 'center',
     alignItems: 'center'

@@ -1,16 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, ScrollView, Image } from 'react-native';
 
-export default function Leaderboard({navigation}: any) {
+export default function Leaderboard() {
   return (
     <View style={styles.container}>
-      {/* Background Image */}
       <ImageBackground
-        source={require('@/assets/images/background_leaderboard.png')}
+        source={require('@/assets/images/background_login.png')}
         style={styles.backgroundContainer}
       >
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-          
           <View style={styles.topThreeContainer}>
             <View style={[styles.rectangle, styles.secondPlace]}>
               <Text style={styles.rankNumberTopThree}>2</Text>
@@ -28,6 +26,9 @@ export default function Leaderboard({navigation}: any) {
             </View>
           </View>
 
+          <View style={styles.sectionTitleContainer}>
+            <Text style={styles.sectionTitle}>Sua posição</Text>
+          </View>
           <View style={styles.userInfoContainer}>
             <Image
               source={require('@/assets/icons/icon-profile.png')}
@@ -39,6 +40,9 @@ export default function Leaderboard({navigation}: any) {
             </View>
           </View>
 
+          <View style={styles.sectionTitleContainer}>
+            <Text style={styles.sectionTitle}>Ranking Geral</Text>
+          </View>
           <View style={styles.rankingsContainer}>
             <View style={styles.rankingCard}>
               <Text style={styles.rankNumber}>4</Text>
@@ -51,6 +55,22 @@ export default function Leaderboard({navigation}: any) {
             <View style={styles.rankingCard}>
               <Text style={styles.rankNumber}>6</Text>
               <Text style={styles.rankingName}>Usuário F</Text>
+            </View>
+            <View style={styles.rankingCard}>
+              <Text style={styles.rankNumber}>7</Text>
+              <Text style={styles.rankingName}>Usuário G</Text>
+            </View>
+            <View style={styles.rankingCard}>
+              <Text style={styles.rankNumber}>8</Text>
+              <Text style={styles.rankingName}>username</Text>
+            </View>
+            <View style={styles.rankingCard}>
+              <Text style={styles.rankNumber}>9</Text>
+              <Text style={styles.rankingName}>Usuário H</Text>
+            </View>
+            <View style={styles.rankingCard}>
+              <Text style={styles.rankNumber}>10</Text>
+              <Text style={styles.rankingName}>Usuário I</Text>
             </View>
           </View>
 
@@ -67,13 +87,27 @@ const styles = StyleSheet.create({
 
   backgroundContainer: {
     flex: 1,
-    resizeMode: 'cover', // Ajusta a imagem para cobrir o fundo
+    resizeMode: 'cover',
+    paddingTop: 50, 
   },
 
   scrollContainer: {
     flexGrow: 1,
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
+  },
+
+  sectionTitleContainer: {
+    width: '100%',
+    marginBottom: 10,
+  },
+
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#37423c',
+    marginVertical: 1,
+ 
   },
 
   topThreeContainer: {
@@ -81,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     width: '100%',
-    marginTop: 70,
+    marginTop: 15,
     marginBottom: 50,
   },
   
@@ -89,35 +123,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 8,
+    elevation: 5,
   },
   firstPlace: {
-    width: 100,
-    height: 200,
-    backgroundColor: '#649C59',
+    width: 110,
+    height: 210,
+    backgroundColor: '#4A9E6A', 
   },
   secondPlace: {
-    width: 90,
-    height: 130,
-    backgroundColor: '#649C59',
+    width: 100,
+    height: 150,
+    backgroundColor: '#6FBF8D', 
   },
   thirdPlace: {
-    width: 85,
-    height: 100,
-    backgroundColor: '#649C59',
+    width: 90,
+    height: 120,
+    backgroundColor: '#A7D1A2', 
   },
   rankNumberTopThree: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 28,
+    fontWeight: '700',
     color: '#FFF',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   rankNumber: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#649C59',
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#4A9E6A',
   },
   nameText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
     color: '#FFFFFF',
   },
@@ -125,54 +164,50 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#b6e292',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: '#90b378',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 15,
   },
   userImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 65,
+    height: 65,
+    borderRadius: 35,
     marginRight: 15,
   },
   userDetails: {
     flex: 1,
   },
   userName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#414A22',
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#3A4C2E', 
   },
   userStats: {
     fontSize: 14,
-    color: '#666666',
+    color: '#ffff',
   },
   rankingsContainer: {
     width: '100%',
+  
+    marginBottom: 50,
   },
   rankingCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    padding: 25,
-    marginTop: 10,
-    marginBottom: 10,
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 18,
+    marginVertical: 8,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
+    shadowRadius: 6,
     elevation: 3,
   },
   rankingName: {
     fontSize: 16,
     marginLeft: 20,
-    color: '#333333',
+    color: '#333',
   },
 });
