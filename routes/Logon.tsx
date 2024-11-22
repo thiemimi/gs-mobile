@@ -21,7 +21,7 @@ export default function Logon({navigation}: any) {
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user)
-        navigation.navigate('Landing')
+        navigation.navigate('Login')
       })
       .catch((error) => {
         console.log(error)

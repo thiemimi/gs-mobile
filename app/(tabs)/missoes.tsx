@@ -7,12 +7,11 @@ export default function Missoes({ navigation }: any) {
   const [missoes, setMissoes] = useState<any[]>([]);
 
   useEffect(() => {
-  
     const fetchMissoes = () => {
       const unsubscribe = firestore.collection('missoes')
         .onSnapshot((snapshot) => {
           const listaMissoes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setMissoes(listaMissoes); 
+          setMissoes(listaMissoes);
         }, (error) => {
           console.error("Erro ao buscar missões: ", error);
         });
@@ -28,14 +27,12 @@ export default function Missoes({ navigation }: any) {
         <Text style={styles.missaoDescricao}>{item.descricao}</Text>
         <Text style={styles.missaoPontos}>Pontos: {item.pontos}</Text>
       </View>
-      <View style={styles.missaoBotoes}>
-        <TouchableOpacity onPress={() => editarMissao(item.id)} style={styles.missaoBotao}>
-          <FontAwesome name="edit" size={18} color="#007BFF" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => excluirMissao(item.id)} style={styles.missaoBotao}>
-          <FontAwesome name="trash" size={18} color="red" />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={() => excluirMissao(item.id)} style={styles.excluirBotao}>
+        <FontAwesome name="times" size={18} color="red" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => editarMissao(item.id)} style={styles.editarBotao}>
+        <FontAwesome name="edit" size={18} color="#007BFF" />
+      </TouchableOpacity>
     </View>
   );
 
@@ -124,15 +121,16 @@ const styles = StyleSheet.create({
 
   missaoItem: {
     backgroundColor: '#F8FFF2',
-    padding: 15,
+    padding: 18,
     marginBottom: 12,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
+    position: 'relative',
   },
-  missaoInfo:{
+  missaoInfo: {
     padding: 8,
     flex: 1,
   },
@@ -152,13 +150,16 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontWeight: '800'
   },
-  missaoBotoes: {
-    position: 'absolute', 
-    top: 10, 
-    right: 10, 
-    flexDirection: 'row',
+  excluirBotao: {
+    position: 'absolute',
+    top: 10,
+    padding: 8,
+    right: 10,
   },
-  missaoBotao: {
-    marginLeft: 10, 
+  editarBotao: {
+    position: 'absolute',
+    padding: 5,
+    bottom: 10,
+    right: 10,
   },
 });
